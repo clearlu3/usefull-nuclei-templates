@@ -1,0 +1,25 @@
+id: aliyun-oss-NoSuchBucket
+
+info:
+  name: aliyun-oss接管
+  author: clearlu3
+  severity: medium
+  tags: oss,alibaba,cloud,bucket,aliyun
+
+http:
+  - method: GET
+    path:
+      - "{{BaseURL}}"
+
+    matchers:
+      - type: word
+        words:
+          - "NoSuchBucket"
+        part: body
+
+    extractors:
+      - type: regex
+        name: 存储桶可接管
+        part: body
+        regex:
+          - '<BucketName>(.*?)</BucketName>'
